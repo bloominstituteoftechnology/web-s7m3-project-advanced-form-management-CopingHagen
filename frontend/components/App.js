@@ -70,7 +70,13 @@ export default function App() {
     evt.preventDefault()
     axios.post('https://webapis.bloomtechdev.com/registration', values)
     .then(res => {
+      setValues(getInitialValues())
       setServerSuccess(res.data.message)
+      setServerFailure()
+    })
+    .catch(err => {
+      setServerFailure(err.response.data.message)
+      setServerFailure()
     })
   }
 
