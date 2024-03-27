@@ -67,6 +67,11 @@ export default function App() {
     // the form. You must put the success and failure messages from the server
     // in the states you have reserved for them, and the form
     // should be re-enabled.
+    evt.preventDefault()
+    axios.post('https://webapis.bloomtechdev.com/registration', values)
+    .then(res => {
+      setServerSuccess(res.data.message)
+    })
   }
 
   return (
