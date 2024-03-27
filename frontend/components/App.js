@@ -41,8 +41,8 @@ export default function App() {
   // and (5) the failure message from the server.
   const [values, setValues ] = useState(getInitialValues())
   const [errors, setErrors ] = useState(getInitialErrors())
-  const [serverSuccess, setServerSuccess ] = useState()
-  const [serverFailure, setServerFailure ] = useState()
+  const [serverSuccess, setServerSuccess ] = useState('')
+  const [serverFailure, setServerFailure ] = useState('')
 
 
   // ✨ TASK: BUILD YOUR EFFECT HERE
@@ -75,23 +75,23 @@ export default function App() {
 
         <div className="inputGroup">
           <label htmlFor="username">Username:</label>
-          <input id="username" name="username" type="text" placeholder="Type Username" />
-          { errors.username && <div className="validation">username is required</div> }
+          <input values={values.username} onChange={onChange} id="username" name="username" type="text" placeholder="Type Username" />
+          { errors.username && <div className="validation">{errors.username}</div> }
         </div>
 
         <div className="inputGroup">
           <fieldset>
             <legend>Favorite Language:</legend>
             <label>
-              <input type="radio" name="favLanguage" value="javascript" />
+              <input checked={values.favLanguage == 'javascript'} onChange={onChange} type="radio" name="favLanguage" value="javascript" />
               JavaScript
             </label>
             <label>
-              <input type="radio" name="favLanguage" value="rust" />
+              <input checked={values.favLanguage == 'rust'} onChange={onChange} type="radio" name="favLanguage" value="rust" />
               Rust
             </label>
           </fieldset>
-          { errors.favLanguage && <div className="validation">favLanguage is required</div> }
+          { errors.favLanguage && <div className="validation">{errors.favLanguage}</div> }
         </div>
 
         <div className="inputGroup">
@@ -102,7 +102,7 @@ export default function App() {
             <option value="spaghetti">Spaghetti</option>
             <option value="broccoli">Broccoli</option>
           </select>
-          { errors.favFood && <div className="validation">favFood is required</div> }     
+          { errors.favFood && <div className="validation">{errors.favFood}</div> }     
         </div>
 
         <div className="inputGroup">
@@ -110,7 +110,7 @@ export default function App() {
             <input id="agreement" type="checkbox" name="agreement" />
             Agree to our terms
           </label>
-          { errors.agreement && <div className="validation">agreement is required</div> }
+          { errors.agreement && <div className="validation">{errors.agreement}</div> }
         </div>
 
         <div>
