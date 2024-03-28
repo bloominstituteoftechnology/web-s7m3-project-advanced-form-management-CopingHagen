@@ -77,6 +77,9 @@ export default function App() {
     let {type, name, value, checked } = evt.target
     value = type == 'checkbox' ? checked : value
     setValues({... values, [name]: value})
+    yup.reach(userSchema, name).validate(value)
+      .then(() => setErrors({...errors, [name]: ''}))
+      .catch((err) => setErrors({...errors, [name]: err.errors[0]}))
   }
 
   const onSubmit = evt => {
